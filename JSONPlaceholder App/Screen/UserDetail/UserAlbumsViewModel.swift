@@ -1,5 +1,5 @@
 //
-//  UserAlbumViewModel.swift
+//  UserAlbumsViewModel.swift
 //  JSONPlaceholder App
 //
 //  Created by Indra Permana on 12/07/21.
@@ -9,7 +9,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class UserAlbumViewModel {
+/*
+ Not Used for now...
+ But ideally we can separate the View Model for a page to minimize loading time,
+ because each data can be fetched individually
+ */
+class UserAlbumsViewModel {
   
   private let postService: PostService
   
@@ -52,6 +57,7 @@ class UserAlbumViewModel {
     
     postService.fetchUserAlbums(userId: userId, successHandler: { [weak self] (albums) in
       self?._isFetching.accept(false)
+      print(albums)
       self?._albums.accept(albums)
     }, errorHandler: {[weak self] (error) in
       self?._isFetching.accept(false)
